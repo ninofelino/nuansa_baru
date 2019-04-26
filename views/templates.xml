@@ -1,0 +1,81 @@
+<odoo>
+    <data>
+        <template id="listi"> 
+          <t t-call="website.layout">
+            <xpath expr="." position="inside">
+		         <!-- All links to CSS and JS files should be added in here. -->
+             <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.4.0/jquery.min.js"></script>
+            </xpath>
+            <div class="row">
+                 <div class="col-sm-4">
+                   
+                    <div id="kiri" style="height:500px;border:1px solid #ccc;overflow:auto;" >
+                    <li class="page-item"><a class="page-link" href="/nuansa">Home</a></li>
+                          
+                    <div  t-raw="kiri"></div>
+                    <span t-raw="menu"/>
+                  
+                    
+                    <div id="pesan"></div>     
+                    
+                    </div>
+                 </div>
+                 
+                 <div class="col-sm-8">
+                                  
+                     <div id="dikanan" style="height:500px;border:1px solid #ccc;overflow:auto;">
+                         <nav aria-label="Page navigation example">
+                         <ul class="pagination">
+                            <input type="button" id="btnExport" value="Excel" />
+                            
+                            <button id="btt" type="button" class="btn btn-info" data-toggle="collapse" data-target="#demo">hide</button>
+                            <button onclick="printData()" >Print</button>
+                           
+                            <li class="page-item"><a class="page-link" href="#">View</a></li>
+                                                       
+                            <li class="page-item"><a class="page-link" href="#">Previous</a></li>
+                            
+                            <li class="page-item"><a class="page-link" href="#">1</a></li>
+                            <li class="page-item"><a class="page-link" href="#">2</a></li>
+                            <li class="page-item"><a class="page-link" href="#">3</a></li>
+                            <li class="page-item"><a class="page-link" href="#">Next</a></li>
+                         </ul>
+                         </nav>
+                         <div >
+                         <div id="content" t-raw="kanan"></div>
+                         </div>
+                      </div>
+                 </div>
+                 <script>
+                  function printData()
+{
+   var divToPrint=document.getElementById("content");
+   newWin= window.open("");
+   newWin.document.write(divToPrint.outerHTML);
+   newWin.print();
+   newWin.close();
+}; 
+                  function cetak(){
+                           alert('print');
+
+                  };
+            
+                  $("#btt").click(function(e){
+                    $(".collapse").toggle();
+                    
+                  });
+                  $("#btnExport").click(function (e) {
+                  alert("table");
+                  window.open('data:application/vnd.ms-excel,' + $('#content').html());
+                  e.preventDefault();
+                  });
+                 </script>
+            </div>     
+            
+           
+          </t>   
+           
+       
+        </template>
+    </data>
+</odoo>
